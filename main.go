@@ -13,7 +13,7 @@ func main() {
 	// Initialize logger
 	logInstance := initializeLogger()
 
-	movieHandler := handlers.NewMovieHandler{}
+	movieHandler := handlers.MovieHandler{}
 	// Set up Routes
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 

@@ -9,13 +9,14 @@ import (
 
 type MovieHandler struct {
 	// TODO: Add dependencies like database, cache, etc.
+	//logger Logger
 }
 
 // Utility functions
 func (h *MovieHandler) writeJSONResponse(w http.ResponseWriter, data interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(data); err != nil {
-		h.logger.Error("Failed to encode response", err)
+		//h.logger.Error("Failed to encode response", err)
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		return err
 	}

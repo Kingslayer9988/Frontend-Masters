@@ -5,4 +5,5 @@ type Actor struct {
 	FirstName string
 	LastName  string
 	ImageURL  *string // nullable
+	Name      string  // full name, derived from FirstName and LastName
 }
