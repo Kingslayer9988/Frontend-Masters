@@ -7,7 +7,9 @@ import (
 	"frontendmasters.com/movies/models"
 )
 
-type MovieHandler struct{}
+type MovieHandler struct {
+	// TODO: Add dependencies like database, cache, etc.
+}
 
 // Utility functions
 func (h *MovieHandler) writeJSONResponse(w http.ResponseWriter, data interface{}) error {

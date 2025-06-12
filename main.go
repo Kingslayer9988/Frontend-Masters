@@ -5,12 +5,17 @@ import (
 	"log"
 	"net/http"
 
+	"frontendmasters.com/movies/handlers"
 	"frontendmasters.com/movies/logger"
 )
 
 func main() {
 	// Initialize logger
 	logInstance := initializeLogger()
+
+	movieHandler := handlers.NewMovieHandler{}
+	// Set up Routes
+	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 
 	// Handler for static files (Frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))
