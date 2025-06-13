@@ -36,6 +36,18 @@ func (r *MovieRepository) GetTopMovies() ([]models.Movie, error) {
 	return r.getMovies(query)
 }
 
+func (r *MovieRepository) GetRandomMovies() ([]models.Movie, error) {
+	// Fetch movies
+	query := `
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		       popularity, language, poster_url, trailer_url
+		FROM movies
+		ORDER BY random() DESC
+		LIMIT $1
+	`
+	return r.getMovies(query)
+}
+
 func (r *MovieRepository) getMovies(query string) ([]models.Movie, error) {
 	rows, err := r.db.Query(query, defaultLimit)
 	if err != nil {
