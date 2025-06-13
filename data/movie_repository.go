@@ -14,6 +14,7 @@ type MovieRepository struct {
 	logger *logger.Logger
 }
 
+// Factory function to create a new MovieRepository
 func NewMovieRepository(db *sql.DB, log *logger.Logger) (*MovieRepository, error) {
 	return &MovieRepository{
 		db:     db,
