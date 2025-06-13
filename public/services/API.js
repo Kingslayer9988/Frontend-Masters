@@ -1,7 +1,15 @@
 export const API = {
+    baseURL: "/api",
     getTopMovies: async () => {
-        const response = await fetch("/api/movies/top");
-        const result = await response.json();
-        return result;
+        return API.fetch("movies/top");
+    },
+    fetch: async (Service, args) => {
+        try {
+            const response = await fetch(API.baseURL + Service);
+            const result = await response.json();
+            return result;
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
