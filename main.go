@@ -16,6 +16,7 @@ func main() {
 	movieHandler := handlers.MovieHandler{}
 	// Set up Routes
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
+	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
 
 	// Handler for static files (Frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))
