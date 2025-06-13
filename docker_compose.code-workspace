@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../../docker_compose"
+		},
+		{
+			"path": "../../../../../../docker/appdata"
+		}
+	],
+	"settings": {
+		"github.copilot.enable": {
+			"go": true
+		}
+	}
+}
