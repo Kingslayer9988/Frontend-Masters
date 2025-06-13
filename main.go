@@ -16,12 +16,11 @@ import (
 )
 
 func initializeLogger() *logger.Logger {
-	// Log to File with NewLogger
-	logInstance, err := logger.NewLogger("movie-service.log")
+	logInstance, err := logger.NewLogger("movie.log")
+	// logInstance.Error("Hello from the Error system", nil)
 	if err != nil {
-		log.Fatalf("Failed to initialize logger: %v", err)
+		log.Fatalf("Failed to initialice logger %v", err)
 	}
-	defer logInstance.Close()
 	return logInstance
 }
 
