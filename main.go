@@ -1,13 +1,16 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
-	"frontendmasters.com/joho/godotenv"
 	"frontendmasters.com/movies/handlers"
 	"frontendmasters.com/movies/logger"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 func initializeLogger() *logger.Logger {
@@ -23,11 +26,22 @@ func initializeLogger() *logger.Logger {
 func main() {
 	// Initialize logger
 	logInstance := initializeLogger()
+
 	// Environmental Variables
 	if err := godotenv.Load(); err != nil {
-		logInstance.Error("Error loading .env file", err)
+		log.Printf("No .env file found or failed to load: %v", err)
 	}
-	godotenv.load()
+
+	// Database connection
+	dbConnStr := os.Getenv("DATABASE_URL")
+	if dbConnStr == "" {
+		log.Fatalf("DATABASE_URL not set in environment")
+	}
+	db, err := sql.Open("postgres", dbConnStr)
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
+	defer db.Close()
 
 	//Movie Handler Initialization
 	movieHandler := handlers.MovieHandler{}
