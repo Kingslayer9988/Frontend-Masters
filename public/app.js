@@ -1,3 +1,5 @@
+import { API } from "./services/API.js";
+
 windows.app = {
     search: (event) => {
         event.preventDefault();
