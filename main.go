@@ -9,6 +9,7 @@ import (
 
 	"frontendmasters.com/movies/handlers"
 	"frontendmasters.com/movies/logger"
+
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
