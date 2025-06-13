@@ -9,15 +9,15 @@ import (
 )
 
 type MovieHandler struct {
-	storage data.MovieStorage
-	logger  *logger.Logger
+	Storage data.MovieStorage
+	Logger  *logger.Logger
 }
 
 // Function writeJSONResponse
 func (h *MovieHandler) writeJSONResponse(w http.ResponseWriter, data interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(data); err != nil {
-		h.logger.Error("Failed to encode response", err)
+		h.Logger.Error("Failed to encode response", err)
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		return err
 	}
@@ -25,20 +25,20 @@ func (h *MovieHandler) writeJSONResponse(w http.ResponseWriter, data interface{}
 }
 
 func (h *MovieHandler) GetTopMovies(w http.ResponseWriter, r *http.Request) {
-	movies, err := h.storage.GetTopMovies()
+	movies, err := h.Storage.GetTopMovies()
 	if err != nil {
 		http.Error(w, "Failed to get top movies", 500)
-		h.logger.Error("Failed to get top movies", err)
+		h.Logger.Error("Failed to get top movies", err)
 		return
 	}
 	h.writeJSONResponse(w, movies)
 }
 
 func (h *MovieHandler) GetRandomMovies(w http.ResponseWriter, r *http.Request) {
-	movies, err := h.storage.GetRandomMovies()
+	movies, err := h.Storage.GetRandomMovies()
 	if err != nil {
 		http.Error(w, "Failed to get random movies", 500)
-		h.logger.Error("Failed to get random movies", err)
+		h.Logger.Error("Failed to get random movies", err)
 		return
 	}
 	h.writeJSONResponse(w, movies)
