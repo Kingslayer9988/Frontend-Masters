@@ -54,7 +54,7 @@ func main() {
 	//Movie Handler Initialization
 	movieHandler := handlers.MovieHandler{
 		storage: movieRepo,
-		logger:  logInstance
+		logger:  logInstance,
 	}
 
 	// Set up Routes
