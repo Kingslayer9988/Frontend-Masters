@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"frontendmasters.com/movies/data"
 	"frontendmasters.com/movies/handlers"
 	"frontendmasters.com/movies/logger"
 
@@ -44,8 +45,18 @@ func main() {
 	}
 	defer db.Close()
 
+	// Initialize Movie Repository
+	movieRepo, err := data.NewMovieRepository(db, logInstance)
+	if err != nil {
+		log.Fatalf("Failed to create movie repository: %v", err)
+	}
+
 	//Movie Handler Initialization
-	movieHandler := handlers.MovieHandler{}
+	movieHandler := handlers.MovieHandler{
+		storage: movieRepo,
+		logger:  logInstance
+	}
+
 	// Set up Routes
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
