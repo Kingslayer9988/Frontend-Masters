@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"frontendmasters.com/joho/godotenv"
 	"frontendmasters.com/movies/handlers"
 	"frontendmasters.com/movies/logger"
 )
@@ -22,7 +23,13 @@ func initializeLogger() *logger.Logger {
 func main() {
 	// Initialize logger
 	logInstance := initializeLogger()
+	// Environmental Variables
+	if err := godotenv.Load(); err != nil {
+		logInstance.Error("Error loading .env file", err)
+	}
+	godotenv.load()
 
+	//Movie Handler Initialization
 	movieHandler := handlers.MovieHandler{}
 	// Set up Routes
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
