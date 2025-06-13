@@ -9,6 +9,16 @@ import (
 	"frontendmasters.com/movies/logger"
 )
 
+func initializeLogger() *logger.Logger {
+	// Log to File with NewLogger
+	logInstance, err := logger.NewLogger("movie-service.log")
+	if err != nil {
+		log.Fatalf("Failed to initialize logger: %v", err)
+	}
+	defer logInstance.Close()
+	return logInstance
+}
+
 func main() {
 	// Initialize logger
 	logInstance := initializeLogger()
@@ -30,15 +40,4 @@ func main() {
 		logInstance.Error("Server failed to start", err)
 		log.Fatalf("Server failed: %v", err)
 	}
-}
-
-// Call other package ../logger/
-func initializeLogger() *logger.Logger {
-	// Log to File with NewLogger
-	logInstance, err := logger.NewLogger("movie-service.log")
-	if err != nil {
-		log.Fatalf("Failed to initialize logger: %v", err)
-	}
-	defer logInstance.Close()
-	return logInstance
 }
