@@ -45,21 +45,20 @@ func main() {
 	}
 	defer db.Close()
 
-	// Initialize Movie Repository
+	// Initialize Data Repository for Movies
 	movieRepo, err := data.NewMovieRepository(db, logInstance)
 	if err != nil {
-		log.Fatalf("Failed to create movie repository: %v", err)
+		log.Fatalf("Failed to initialize movierepository")
 	}
 
-	//Movie Handler Initialization
+	// Initialize Movie Repository
 	movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)
 
-	// Set up Routes
-	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
-	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
-	http.HandleFunc("/api/movies/search", movieHandler.SearchMovies)
-	http.HandleFunc("/api/movies/", movieHandler.GetMovie)
-	http.HandleFunc("/api/genres", movieHandler.GetGenres)
+	http.HandleFunc("/api/movies/top/", movieHandler.GetTopMovies)
+	http.HandleFunc("/api/movies/random/", movieHandler.GetRandomMovies)
+	http.HandleFunc("/api/movies/search/", movieHandler.SearchMovies)
+	http.HandleFunc("/api/movies/", movieHandler.GetMovie) // api/movies/140
+	http.HandleFunc("/api/genres/", movieHandler.GetGenres)
 
 	// Handler for static files (Frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))
