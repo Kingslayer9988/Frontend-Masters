@@ -1,3 +1,6 @@
 {
-    "remote.localPortHost": "allInterfaces"
+    "remote.localPortHost": "allInterfaces",
+    "files.associations": {
+        "*.pdf": "default"
+    }
 }
