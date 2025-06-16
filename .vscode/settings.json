@@ -1,6 +1,30 @@
 {
+    "remote.SSH.remotePlatform": {
+        "Ubuntu-Remote": "linux"
+    },
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "github.copilot.selectedCompletionModel": "",
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDelete": false,
+    "github.copilot.enable": {
+        "go": true
+    },
     "remote.localPortHost": "allInterfaces",
+    "remote.SSH.defaultForwardedPorts": [
+
+    ],
+    "remote.SSH.enableRemoteCommand": true,
+    "remote.SSH.permitPtyAllocation": true,
+    "window.newWindowProfile": "Default",
+    "remote.downloadExtensionsLocally": true,
     "files.associations": {
         "*.pdf": "default"
-    }
+    },
+    "openInExternalApp.openMapper": [
+        {
+            "fileExtension": "pdf",
+            "openCommand": "ACROBAT"
+        }
+    ]
 }
