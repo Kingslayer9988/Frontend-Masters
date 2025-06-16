@@ -1,4 +1,5 @@
 import { API } from "../services/API.js";
+import { MovieItemComponent } from "./MovieItemComponent.js";
 
 export class HomePage extends HTMLElement { // << homepage >>
     async render() {
