@@ -1,5 +1,5 @@
 export const API = {
-    baseURL: "/api",
+    baseURL: "/api/",
     getTopMovies: async () => {
         return await API.fetch("movies/top");
     },
